@@ -50,6 +50,26 @@
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
         }
+
+        .container { max-width:1120px!important; width:calc(100% - 48px); }
+        nav { gap:12px; }
+        .nav-item { background:none; border:0; border-bottom:2px solid transparent; margin:0!important; font:inherit; padding:16px 20px; }
+        .nav-item:focus-visible,.video-preview:focus-visible { outline:3px solid #3182ce; outline-offset:4px; }
+        .performances-heading { font-size:30px; font-weight:700; letter-spacing:-.025em; margin-bottom:32px; }
+        .dance-category { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px 24px; margin-bottom:48px; }
+        .dance-category>h3 { grid-column:1/-1; font-size:19px; font-weight:600; padding-bottom:12px; border-bottom:1px solid #e2e8f0; }
+        .video-item { min-width:0; display:flex; flex-direction:column; align-items:stretch; }
+        .video-item h4 { order:2; font-size:15px; font-weight:600; line-height:1.5; margin:12px 0 0; }
+        .video-item p { order:3; font-size:14px; color:#64748b; line-height:1.5; margin-top:5px; }
+        .video-preview,.video-player { order:1; position:relative; display:block; width:100%; aspect-ratio:16/9; border:0; border-radius:10px; overflow:hidden; background:#111827; }
+        .video-preview { cursor:pointer; padding:0; }
+        .video-preview img { width:100%; height:100%; object-fit:cover; transition:transform .25s ease,opacity .25s ease; }
+        .video-preview:hover img { transform:scale(1.04); opacity:.75; }
+        .play-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:52px; height:52px; padding-left:3px; background:rgba(255,255,255,.95); color:#172033; border-radius:50%; font-size:19px; box-shadow:0 2px 16px #0004; }
+        .watch-label { position:absolute; bottom:10px; left:12px; font-size:11px; color:white; background:#111827b3; padding:4px 8px; border-radius:4px; }
+        @media(max-width:900px) { .dance-category { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+        @media(max-width:600px) { .container { width:calc(100% - 24px); padding:20px 16px; margin:20px auto; } main { padding:0!important; } header { margin-bottom:24px!important; } nav { gap:0; } .nav-item { padding:14px 12px; font-size:15px; } .performances-heading { font-size:26px; margin-bottom:24px; } .dance-category { grid-template-columns:1fr; gap:24px; } }
+        @media(prefers-reduced-motion:reduce) { .video-preview img { transition:none; } }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -65,9 +85,9 @@
 
         <!-- Navigation Tabs -->
         <nav class="flex justify-center space-x-8 border-b-2 border-gray-200 mb-8">
-            <div class="nav-item p-4 text-lg text-gray-600 hover:text-blue-500 hover:border-blue-500 transition-colors duration-200 ease-in-out" data-tab="bio">Bio</div>
-            <div class="nav-item p-4 text-lg text-gray-600 hover:text-blue-500 hover:border-blue-500 transition-colors duration-200 ease-in-out" data-tab="resume">Resume</div>
-            <div class="nav-item p-4 text-lg text-gray-600 hover:text-blue-500 hover:border-blue-500 transition-colors duration-200 ease-in-out active" data-tab="collection">Video Collection</div>
+            <button type="button" class="nav-item p-4 text-lg text-gray-600 hover:text-blue-500 hover:border-blue-500 transition-colors duration-200 ease-in-out" data-tab="bio" aria-pressed="false">Bio</button>
+            <button type="button" class="nav-item p-4 text-lg text-gray-600 hover:text-blue-500 hover:border-blue-500 transition-colors duration-200 ease-in-out" data-tab="resume" aria-pressed="false">Resume</button>
+            <button type="button" class="nav-item p-4 text-lg text-gray-600 hover:text-blue-500 hover:border-blue-500 transition-colors duration-200 ease-in-out active" data-tab="collection" aria-pressed="false">Performances</button>
         </nav>
 
         <!-- Tab Content -->
@@ -111,8 +131,8 @@
             </div>
 
             <!-- Video Collection Section -->
-            <section id="video-collection">
-              <h2>Video Collection</h2>
+            <section id="collection" class="tab-content active">
+              <h2 class="performances-heading">Selected Performances</h2>
             
               <!-- Part 1: Solo / Duet Dances -->
               <div class="dance-category">
@@ -120,37 +140,37 @@
             
                 <div class="video-item">
                   <h4>Evan Yuan - Lonely Warrior </h4>
-                  <iframe src="https://www.youtube.com/embed/abGFrInigLA?list=PLULAgr3qYvKM" title="Evan Yuan - Lonely Warrior" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="abGFrInigLA" aria-label="Play Evan Yuan - Lonely Warrior"><img src="https://i.ytimg.com/vi/abGFrInigLA/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
             
                 <div class="video-item">
                   <h4>Evan Yuan-  Dream in the Moonlight</h4>
-                  <iframe src="https://www.youtube.com/embed/BsUWDrjBw40?list=PLULAgr3qYvKM" title="Evan Yuan - Dream in the Moonlight" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="BsUWDrjBw40" aria-label="Play Evan Yuan - Dream in the Moonlight"><img src="https://i.ytimg.com/vi/BsUWDrjBw40/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
                 <div class="video-item">
                   <h4>Evan Yuan/Celine Dela Cruz - Secrets </h4>
-                  <iframe src="https://www.youtube.com/embed/TdBC76LmguE?list=PLULAgr3qYvKM" title="Evan Yuan/Celine Dela Cruz - Secrets" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="TdBC76LmguE" aria-label="Play Evan Yuan/Celine Dela Cruz - Secrets"><img src="https://i.ytimg.com/vi/TdBC76LmguE/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
             
                 <div class="video-item">
                   <h4>Evan Yuan -  Breathwork  (HEAT 2025)</h4>
-                  <iframe src="https://www.youtube.com/embed/abGFrInigLA?list=PLULAgr3qYvKM" title="Evan Yuan - Breathwork (HEAT 2025)" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="abGFrInigLA" aria-label="Play Evan Yuan - Breathwork (HEAT 2025)"><img src="https://i.ytimg.com/vi/abGFrInigLA/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                   <p>A solo contemporary piece exploring the rhythm and chaos.</p>
                 </div>
             
                 <div class="video-item">
                   <h4>Evan Yuan- Not Over You (2024)</h4>
-                  <iframe src="https://www.youtube.com/embed/BsUWDrjBw40?list=PLULAgr3qYvKM" title="Evan Yuan- Not Over You (2024)" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="BsUWDrjBw40" aria-label="Play Evan Yuan- Not Over You (2024)"><img src="https://i.ytimg.com/vi/BsUWDrjBw40/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                   <p>A powerful tap.</p>
                 </div>
             
             
                 <div class="video-item">
                   <h4>Evan Yuan - Gosh (2024)</h4>
-                  <iframe src="https://www.youtube.com/embed/TdBC76LmguE?list=PLULAgr3qYvKM" title="Evan Yuan - Gosh (2024)" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="TdBC76LmguE" aria-label="Play Evan Yuan - Gosh (2024)"><img src="https://i.ytimg.com/vi/TdBC76LmguE/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                   <p>A Open Solo.</p>
                 </div>
               </div>
@@ -161,38 +181,38 @@
                 
                 <div class="video-item">
                   <h4>Hip Hop: Outta My Mind</h4>
-                  <iframe src="https://www.youtube.com/embed/r4Qu9eBXTpU?list=PLULAgr3qYvKM" title="Hip Hop " allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="r4Qu9eBXTpU" aria-label="Play Hip Hop"><img src="https://i.ytimg.com/vi/r4Qu9eBXTpU/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
                 <div class="video-item">
                   <h4>Jazz: Blow</h4>
-                  <iframe src="https://www.youtube.com/embed/u0znCLp0zaM?list=PLULAgr3qYvKM" title="Jazz: Blow" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="u0znCLp0zaM" aria-label="Play Jazz: Blow"><img src="https://i.ytimg.com/vi/u0znCLp0zaM/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
                 <div class="video-item">
                   <h4>Tap: Everything Happens to Me</h4>
-                  <iframe src="https://www.youtube.com/embed/GMpBDzU5I3g?list=PLULAgr3qYvKM" title="Tap: Everything Happens to Me" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="GMpBDzU5I3g" aria-label="Play Tap: Everything Happens to Me"><img src="https://i.ytimg.com/vi/GMpBDzU5I3g/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
             
                 <div class="video-item">
                   <h4>Contemporary: Glitter </h4>
-                  <iframe src="https://www.youtube.com/embed/C5_oWEFRMlY?list=PLULAgr3qYvKM" title="Contemporary: Glitter" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="C5_oWEFRMlY" aria-label="Play Contemporary: Glitter"><img src="https://i.ytimg.com/vi/C5_oWEFRMlY/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
                 <div class="video-item">
                   <h4>Tap: Piece of My Heart </h4>
-                  <iframe src="https://www.youtube.com/embed/NKAMqo7gTWg?list=PLULAgr3qYvKM" title="Tap: Piece of My Heart" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="NKAMqo7gTWg" aria-label="Play Tap: Piece of My Heart"><img src="https://i.ytimg.com/vi/NKAMqo7gTWg/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
                 <div class="video-item">
                   <h4>Hip Hop: When I Grow Up</h4>
-                  <iframe src="https://www.youtube.com/embed/1F2Iaqohnio?list=PLULAgr3qYvKM" title="Hip Hop: When I Grow Up" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="1F2Iaqohnio" aria-label="Play Hip Hop: When I Grow Up"><img src="https://i.ytimg.com/vi/1F2Iaqohnio/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
             
                 <div class="video-item">
                   <h4>Jazz: Come On Over</h4>
-                  <iframe src="https://www.youtube.com/embed/ClT7gJxt0nA?list=PLULAgr3qYvKM" title="Jazz: Come On Over" allowfullscreen></iframe>
+                  <button type="button" class="video-preview" data-video="ClT7gJxt0nA" aria-label="Play Jazz: Come On Over"><img src="https://i.ytimg.com/vi/ClT7gJxt0nA/hqdefault.jpg" alt="" loading="lazy"><span class="play-icon" aria-hidden="true">▶</span><span class="watch-label">Watch performance</span></button>
                 </div>
               </div>
             </section>
@@ -202,6 +222,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            document.querySelectorAll('.nav-item').forEach(nav => nav.setAttribute('aria-pressed', String(nav.classList.contains('active'))));
+            document.querySelectorAll('.nav-item').forEach(nav => nav.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(item => item.setAttribute('aria-pressed', String(item === nav)));
+                document.querySelectorAll('.video-player').forEach(player => { if (nav.dataset.tab !== 'collection') player.src = player.src.replace('autoplay=1','autoplay=0'); });
+            }));
+            document.querySelectorAll('.video-preview').forEach(button => button.addEventListener('click', () => {
+                const player = document.createElement('iframe');
+                player.className = 'video-player';
+                player.src = 'https://www.youtube.com/embed/' + button.dataset.video + '?autoplay=1&rel=0';
+                player.title = button.getAttribute('aria-label').replace(/^Play /,'');
+                player.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+                player.allowFullscreen = true;
+                button.replaceWith(player);
+                player.focus();
+            }));
+
             const navItems = document.querySelectorAll('.nav-item');
             const tabContents = document.querySelectorAll('.tab-content');
 
